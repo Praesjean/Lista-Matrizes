@@ -1,0 +1,44 @@
+def cadastrarPessoa():
+    nome = input("Insira o nome: ")
+    cpf = input("Insira o CPF: ")
+    idade = int(input("Insira a idade: "))
+    renda_mensal = float(input("Insira a renda mensal: "))
+    return [nome, cpf, idade, renda_mensal]
+
+def imprimirPessoas(pessoas):
+    print("\nPessoas cadastradas:")
+    for pessoa in pessoas:
+        print(f"Nome: {pessoa[0]}, CPF: {pessoa[1]}, Idade: {pessoa[2]}, Renda Mensal: {pessoa[3]}")
+    print()
+
+def calcularMedias(pessoas):
+    totalIdade = 0
+    totalRenda = 0.0
+    for pessoa in pessoas:
+        totalIdade += pessoa[2]
+        totalRenda += pessoa[3]
+    mediaIdade = totalIdade / len(pessoas) if pessoas else 0
+    mediaRenda = totalRenda / len(pessoas) if pessoas else 0
+    return mediaIdade, mediaRenda
+
+def main():
+    pessoas = []
+    while True:
+        opcao = input("Deseja cadastrar uma nova pessoa? (s/n): ").lower()
+        if opcao == 's':
+            pessoa = cadastrarPessoa()
+            pessoas.append(pessoa)
+        elif opcao == 'n':
+            break
+        else:
+            print("Opção inválida. Insira 's' para sim ou 'n' para não.")
+    
+    if pessoas:
+        imprimirPessoas(pessoas)
+        mediaIdade, mediaRenda = calcularMedias(pessoas)
+        print(f"Média de idade: {mediaIdade:.2f}")
+        print(f"Média de renda mensal: {mediaRenda:.2f}")
+    else:
+        print("Nenhuma pessoa cadastrada.")
+
+main()

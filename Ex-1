@@ -9,7 +9,6 @@ def criarMatriz(M, N):
         matriz.append(linha)
     return matriz
 
-# Exemplo de uso
 M = int(input("Insira o número de linhas da matriz: "))
 N = int(input("Insira o número de colunas da matriz: "))
 

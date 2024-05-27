@@ -1,0 +1,55 @@
+import random
+
+def somaNumPar(matriz):
+    soma = 0
+    for linha in matriz:
+        for elemento in linha:
+            if elemento % 2 == 0:
+                soma += elemento
+    return soma
+
+def imprimirMatriz(matriz):
+    for linha in matriz:
+        print(linha)
+
+def criarMatriz(M, N):
+    matriz = []
+    for i in range(M):
+        linha = []
+        for j in range(N):
+            linha.append(random.randint(1, 20))
+        matriz.append(linha)
+    return matriz
+
+def somaColuna(matriz, coluna):
+    if coluna < 0 or coluna >= len(matriz[0]):
+        return "Coluna inválida"
+    soma = 0
+    for linha in matriz:
+        soma += linha[coluna]
+    return soma
+
+def maiorValorLinha(matriz, linha):
+    if linha < 0 or linha >= len(matriz):
+        return "Linha inválida"
+    maior = max(matriz[linha])
+    return maior
+
+M = int(input("Insira o número de linhas da matriz: "))
+N = int(input("Insira o número de colunas da matriz: "))
+
+matrizGerada = criarMatriz(M, N)
+
+print("Matriz: ")
+imprimirMatriz(matrizGerada)
+
+somaPar = somaNumPar(matrizGerada)
+print(f"A soma dos números pares na matriz é: {somaPar}")
+
+colunaEscolhida = int(input("Insira o número da coluna que deseja somar: "))
+somaCol = somaColuna(matrizGerada, colunaEscolhida)
+print(f"A soma dos elementos da coluna {colunaEscolhida} é: {somaCol}")
+
+linhaEscolhida = int(input("Insira o número da linha que deseja encontrar o maior valor: "))
+maiorValor = maiorValorLinha(matrizGerada, linhaEscolhida)
+print(f"O maior valor da linha {linhaEscolhida} é: {maiorValor}")
